@@ -1,0 +1,112 @@
+.frame-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+}
+
+.frame-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 105, 180, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+}
+
+.frame-card--selected {
+  background: rgba(255, 105, 180, 0.08);
+  border-color: rgba(255, 105, 180, 0.7);
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.2), 0 12px 32px rgba(0, 0, 0, 0.25);
+  transform: translateY(-4px);
+}
+
+.frame-card__preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.frame-card__layout {
+  position: absolute;
+  inset: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.frame-card__strip {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  height: 100%;
+}
+
+.frame-card__grid2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  height: 100%;
+}
+
+.frame-card__single {
+  height: 100%;
+}
+
+.frame-card__photo-slot {
+  flex: 1;
+  border-radius: 4px;
+  min-height: 0;
+}
+
+.frame-card__sticker {
+  position: absolute;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.frame-card__check {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(255, 105, 180, 0.5);
+}
+
+.frame-card__info {
+  text-align: center;
+  width: 100%;
+}
+
+.frame-card__name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.frame-card__count {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin: 0;
+}

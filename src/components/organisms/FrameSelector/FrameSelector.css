@@ -1,0 +1,134 @@
+.frame-selector {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px 24px;
+  min-height: 100%;
+}
+
+.frame-selector__header {
+  text-align: center;
+  animation: slideDown 0.5s ease both;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.frame-selector__title {
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  margin: 0 0 8px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.frame-selector__title-icon {
+  -webkit-text-fill-color: initial;
+  background: none;
+}
+
+.frame-selector__subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin: 0;
+}
+
+.frame-selector__categories {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  animation: slideDown 0.5s ease both 0.1s;
+}
+
+.frame-selector__categories::-webkit-scrollbar {
+  display: none;
+}
+
+.frame-selector__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 14px;
+  animation: fadeIn 0.4s ease both 0.2s;
+}
+
+@media (min-width: 640px) {
+  .frame-selector__grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.frame-selector__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  color: var(--text-muted);
+  padding: 60px 0;
+  font-size: 14px;
+}
+
+.frame-selector__spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(255, 105, 180, 0.2);
+  border-top-color: #ff69b4;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Decorative floating emojis */
+.frame-selector__deco {
+  position: absolute;
+  font-size: 28px;
+  opacity: 0.1;
+  pointer-events: none;
+  animation: float 4s ease-in-out infinite;
+}
+
+.frame-selector__deco--1 {
+  top: 20px;
+  right: 20px;
+  animation-delay: 0s;
+}
+
+.frame-selector__deco--2 {
+  top: 60%;
+  right: 10px;
+  font-size: 22px;
+  animation-delay: 1.5s;
+}
+
+.frame-selector__deco--3 {
+  top: 40%;
+  left: 8px;
+  font-size: 20px;
+  animation-delay: 0.8s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(8deg); }
+}

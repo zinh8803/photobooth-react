@@ -1,0 +1,235 @@
+.photo-preview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.photo-preview__header {
+  text-align: center;
+  padding: 24px 24px 16px;
+  flex-shrink: 0;
+  animation: slideDown 0.5s ease both;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.photo-preview__title {
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 800;
+  font-family: var(--font-display);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 6px;
+}
+
+.photo-preview__subtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Body */
+.photo-preview__body {
+  display: flex;
+  flex: 1;
+  gap: 24px;
+  padding: 0 24px 24px;
+  min-height: 0;
+  align-items: flex-start;
+}
+
+@media (max-width: 700px) {
+  .photo-preview__body {
+    flex-direction: column;
+    overflow-y: auto;
+    align-items: center;
+  }
+}
+
+/* Result */
+.photo-preview__result-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.photo-preview__result {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.photo-preview__image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.photo-preview__success-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(46, 198, 122, 0.9);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+  animation: slideUp 0.3s ease;
+  white-space: nowrap;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translate(-50%, 20px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.photo-preview__composing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  color: var(--text-secondary);
+}
+
+.photo-preview__compose-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(255, 105, 180, 0.2);
+  border-top-color: #ff69b4;
+  border-radius: 50%;
+  animation: spinP 0.9s linear infinite;
+}
+
+@keyframes spinP {
+  to { transform: rotate(360deg); }
+}
+
+.photo-preview__compose-sub {
+  color: var(--text-muted);
+  font-size: 13px;
+  animation: blink 1.2s ease infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.photo-preview__error {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* Actions */
+.photo-preview__actions {
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 8px;
+}
+
+@media (max-width: 700px) {
+  .photo-preview__actions {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+.photo-preview__secondary-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.photo-preview__secondary-actions > * {
+  flex: 1;
+}
+
+/* Tips */
+.photo-preview__tips {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-top: 4px;
+}
+
+.photo-preview__tip-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.photo-preview__tip-text {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Confetti */
+.photo-preview__confetti {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.photo-preview__confetti-item {
+  position: absolute;
+  top: -20px;
+  font-size: 20px;
+  animation: confettiFall linear both;
+}
+
+@keyframes confettiFall {
+  from {
+    top: -20px;
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    top: 80px;
+    opacity: 0;
+    transform: rotate(360deg) scale(0.5);
+  }
+}
