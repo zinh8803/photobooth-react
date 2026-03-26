@@ -1,7 +1,7 @@
 import { useRef, useEffect, useCallback, useState } from 'react';
 
 interface UseCameraReturn {
-  videoRef: React.RefObject<HTMLVideoElement>;
+  videoRef: React.RefObject<HTMLVideoElement | null>;
   isReady: boolean;
   error: string | null;
   facingMode: 'user' | 'environment';
