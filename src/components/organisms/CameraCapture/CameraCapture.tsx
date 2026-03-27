@@ -159,14 +159,15 @@ const CameraCapture: React.FC<CameraCaptureProps> = ({
                 {!isCapturing && (
                   <div className="camera-capture__timer-select">
                     <span className="camera-capture__timer-label">⏱️</span>
-                    {[5, 7, 10].map((t) => (
+                    {[0, 3, 5, 10].map((t) => (
                       <button
                         key={t}
                         className={`camera-capture__timer-btn ${timerSelection === t ? 'camera-capture__timer-btn--active' : ''}`}
                         onClick={() => onTimerChange(t)}
                         type="button"
+                        title={t === 0 ? 'Chụp ngay' : `${t} giây`}
                       >
-                        {t}s
+                        {t === 0 ? '⚡' : `${t}s`}
                       </button>
                     ))}
                   </div>
@@ -177,11 +178,13 @@ const CameraCapture: React.FC<CameraCaptureProps> = ({
                   fullWidth
                   disabled={!isReady || isCapturing}
                   onClick={onStartCapture}
-                  icon={<span>📸</span>}
+                  icon={<span>{timerSelection === 0 ? '⚡' : '📸'}</span>}
                 >
                   {isCapturing
                     ? 'Đang chụp...'
-                    : `Chụp ảnh ${capturedPhotos.length + 1}/${frame.photoCount}`}
+                    : timerSelection === 0
+                      ? `Chụp ngay! (${capturedPhotos.length + 1}/${frame.photoCount})`
+                      : `Chụp ảnh ${capturedPhotos.length + 1}/${frame.photoCount}`}
                 </Button>
                 <button
                   className="camera-capture__flip-btn"

@@ -20,12 +20,19 @@ const PhotoBoothPage: React.FC = () => {
     reset,
   } = usePhotoBoothState();
 
-  const [timerSelection, setTimerSelection] = React.useState<number>(5);
+  const [timerSelection, setTimerSelection] = React.useState<number>(3);
 
-  // Helper to start the countdown interval
+  // Helper to start the countdown interval (or capture instantly when timer === 0)
   const startCountdown = useCallback(() => {
     if (!state.selectedFrame) return;
     setCapturing(true);
+
+    // Instant capture – no countdown
+    if (timerSelection === 0) {
+      setCountdown(null);
+      window.dispatchEvent(new CustomEvent('photobooth:capture'));
+      return;
+    }
 
     let count = timerSelection;
     setCountdown(count);
@@ -62,15 +69,16 @@ const PhotoBoothPage: React.FC = () => {
         setTimeout(() => {
           setStep('preview');
         }, 500);
-      } else {
-        // CONTINUOUS CAPTURE
-        // Automatically start the next countdown
+      } else if (timerSelection > 0) {
+        // AUTO-CONTINUOUS only when using a timed countdown (not instant mode)
         setTimeout(() => {
           startCountdown();
         }, 1000);
       }
+      // When timerSelection === 0 (instant): do nothing after capture,
+      // user must press the button again for the next shot.
     },
-    [addPhoto, setCapturing, state.capturedPhotos.length, state.selectedFrame?.photoCount, setStep, startCountdown]
+    [addPhoto, setCapturing, state.capturedPhotos.length, state.selectedFrame?.photoCount, setStep, startCountdown, timerSelection]
   );
 
   const handleRetake = useCallback(() => {

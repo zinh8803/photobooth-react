@@ -300,6 +300,17 @@
   font-weight: bold;
 }
 
+/* Instant (⚡) button – slightly wider */
+.camera-capture__timer-btn:first-of-type {
+  width: 34px;
+  font-size: 13px;
+}
+
+.camera-capture__timer-btn--active:first-of-type {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.45);
+}
+
 .camera-capture__flip-btn {
   background: none;
   border: 1.5px solid rgba(255, 255, 255, 0.12);

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block crawling of build artifacts (uncomment if needed)
+# Disallow: /assets/
+
+Sitemap: https://photobooth.zinh.vn/sitemap.xml
